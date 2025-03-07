@@ -18,6 +18,7 @@ html {
     overflow-y: scroll;
     scroll-behavior: smooth;
     height: 100%;
+    font-size: 16px; /* Base font size */
 }
 
 body {
@@ -434,20 +435,144 @@ h2 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    html {
+        font-size: 14px; /* Smaller base font size for mobile */
+        scroll-snap-type: none; /* Disable scroll snap on mobile for better UX */
+    }
+
+    section {
+        padding: 1rem;
+        min-height: 100vh;
+        scroll-snap-align: none;
+    }
+
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 2rem !important;
+        padding: 0 1rem;
     }
-    
-    .level {
-        font-size: 1.2rem;
-    }
-    
+
     .minecraft-card {
         padding: 1rem;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+        max-width: 100%;
     }
-    
+
+    .section-nav {
+        right: 0.5rem;
+        top: 50%;
+    }
+
+    .nav-dot {
+        width: 8px;
+        height: 8px;
+    }
+
     .skill-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .experience-item {
+        padding: 1rem;
+    }
+
+    .achievements li {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .minecraft-health-bar {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        height: 20px;
+    }
+
+    .health-progress {
+        height: 20px;
+    }
+
+    .minecraft-dragon {
+        transform: scale(0.6);
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .experience-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .position, .date {
+        font-size: 0.9rem;
+    }
+
+    .contact-info {
+        padding: 1rem;
+    }
+
+    .contact-info p, .contact-info a {
+        font-size: 0.8rem;
+    }
+
+    /* Fix background attachment for mobile */
+    .hero, .about, .experience, .skills, .education {
+        background-attachment: scroll !important;
+    }
+
+    /* Adjust floating elements for mobile */
+    .floating {
+        animation: none;
+    }
+
+    /* Improve touch targets */
+    .nav-dot, .contact-info a {
+        padding: 0.5rem;
+        margin: 0.25rem;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .minecraft-card {
+        padding: 0.75rem;
+    }
+
+    .section-nav {
+        display: none; /* Hide navigation dots on very small screens */
+    }
+
+    .achievements li {
+        font-size: 0.7rem;
+    }
+}
+
+/* Landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+    section {
+        min-height: 120vh;
+    }
+
+    .minecraft-card {
+        margin: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem !important;
     }
 }
 
