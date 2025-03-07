@@ -300,6 +300,12 @@ section > * {
     margin-bottom: 1rem;
     color: var(--minecraft-green);
     text-shadow: 4px 4px 0 var(--minecraft-dark);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 0 1rem;
+    line-height: 1.4;
 }
 
 .level {
@@ -314,6 +320,12 @@ h2 {
     margin-bottom: 2rem;
     text-align: center;
     text-shadow: 2px 2px 0 var(--minecraft-dark);
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    padding: 0 1rem;
+    line-height: 1.4;
 }
 
 /* Experience Items */
@@ -448,7 +460,8 @@ h2 {
 
     .hero-content h1 {
         font-size: 2rem !important;
-        padding: 0 1rem;
+        padding: 0.5rem;
+        line-height: 1.3;
     }
 
     .minecraft-card {
@@ -502,6 +515,8 @@ h2 {
     h2 {
         font-size: 1.5rem !important;
         margin-bottom: 1rem;
+        padding: 0.5rem;
+        line-height: 1.3;
     }
 
     .experience-item h3 {
@@ -535,6 +550,16 @@ h2 {
         padding: 0.5rem;
         margin: 0.25rem;
     }
+
+    .hero h1::after,
+    .about h2::after,
+    .experience h2::after,
+    .skills h2::after,
+    .education h2::after {
+        font-size: 0.7rem;
+        margin-top: 0.3rem;
+        padding: 0 0.5rem;
+    }
 }
 
 /* Small phones */
@@ -545,6 +570,7 @@ h2 {
 
     .hero-content h1 {
         font-size: 1.5rem !important;
+        padding: 0.3rem;
     }
 
     .minecraft-card {
@@ -557,6 +583,20 @@ h2 {
 
     .achievements li {
         font-size: 0.7rem;
+    }
+
+    h2 {
+        font-size: 1.2rem !important;
+        padding: 0.3rem;
+    }
+
+    .hero h1::after,
+    .about h2::after,
+    .experience h2::after,
+    .skills h2::after,
+    .education h2::after {
+        font-size: 0.6rem;
+        margin-top: 0.2rem;
     }
 }
 
@@ -775,34 +815,23 @@ h2 {
 /* Update section headers with tech puns */
 .hero h1::after {
     content: '\A(Because my code is dragon everyone else behind)';
-    white-space: pre;
+    white-space: pre-wrap;
     font-size: 1rem;
     color: var(--minecraft-light);
     text-shadow: 2px 2px 0 var(--minecraft-dark);
+    display: block;
+    margin-top: 0.5rem;
 }
 
-.about h2::after {
-    content: '\A404: Life not found, too busy coding';
-    white-space: pre;
-    font-size: 0.8rem;
-}
-
-.experience h2::after {
-    content: '\ATrying to catch exceptions in life, but they keep throwing me new challenges';
-    white-space: pre;
-    font-size: 0.8rem;
-}
-
-.skills h2::after {
-    content: '\AI debug therefore I am';
-    white-space: pre;
-    font-size: 0.8rem;
-}
-
+.about h2::after,
+.experience h2::after,
+.skills h2::after,
 .education h2::after {
-    content: '\AGraduated with a degree in Coffee to Code Conversion';
-    white-space: pre;
+    white-space: pre-wrap;
     font-size: 0.8rem;
+    display: block;
+    margin-top: 0.5rem;
+    line-height: 1.4;
 }
 
 /* Add tech pun tooltips to skill items */
