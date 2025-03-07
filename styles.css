@@ -1,0 +1,698 @@
+/* Minecraft-style CSS */
+:root {
+    --minecraft-green: #44bd32;
+    --minecraft-brown: #8b4513;
+    --minecraft-gray: #808080;
+    --minecraft-dark: #2c2c2c;
+    --minecraft-light: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--minecraft-dark);
+    color: var(--minecraft-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.game-container {
+    width: 100%;
+}
+
+/* Section Styles */
+section {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Section Backgrounds */
+.hero {
+    background: url('assets/hero-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.about {
+    background: url('assets/about-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.experience {
+    background: url('assets/experience-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.skills {
+    background: url('assets/skills-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.education {
+    background: url('assets/education-bg.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+/* Section Overlay */
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Content Styles */
+section > * {
+    position: relative;
+    z-index: 5;
+}
+
+/* Minecraft Card Style */
+.minecraft-card {
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 4px solid var(--minecraft-green);
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(68, 189, 50, 0.3);
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    backdrop-filter: blur(5px);
+}
+
+.minecraft-card.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Section Transition Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-enter {
+    animation: fadeIn 0.8s ease-out forwards;
+    z-index: 3;
+}
+
+/* Navigation Dots */
+.section-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--minecraft-gray);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+    background: var(--minecraft-green);
+    transform: scale(1.5);
+}
+
+/* Parallax Layers */
+.parallax-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    perspective: 8px;
+    perspective-origin: center;
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform-style: preserve-3d;
+}
+
+.layer-bg {
+    transform: translateZ(-10px) scale(2.1);
+}
+
+.layer-mid {
+    transform: translateZ(-5px) scale(1.5);
+}
+
+.layer-front {
+    transform: translateZ(0) scale(1);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    transform: translateZ(2px) scale(0.8);
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    color: var(--minecraft-green);
+    text-shadow: 0 0 20px rgba(68, 189, 50, 0.5);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Floating Elements */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Decorative Elements */
+.minecraft-block {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: var(--minecraft-green);
+    opacity: 0.3;
+    transform-style: preserve-3d;
+}
+
+.block-1 { transform: translateZ(-6px) scale(1.6); }
+.block-2 { transform: translateZ(-4px) scale(1.4); }
+.block-3 { transform: translateZ(-2px) scale(1.2); }
+
+/* Scroll Progress */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: var(--minecraft-green);
+    z-index: 9999;
+}
+
+/* Minecraft Card Style */
+.minecraft-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(68, 189, 50, 0.1) 10px,
+        rgba(68, 189, 50, 0.1) 20px
+    );
+    pointer-events: none;
+}
+
+/* Hero Section */
+.minecraft-character {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    transform: translateZ(50px);
+}
+
+.minecraft-character img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--minecraft-green);
+    text-shadow: 4px 4px 0 var(--minecraft-dark);
+}
+
+.level {
+    font-size: 1.5rem;
+    color: var(--minecraft-light);
+    text-shadow: 2px 2px 0 var(--minecraft-dark);
+}
+
+/* Section Headers */
+h2 {
+    color: var(--minecraft-green);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 0 var(--minecraft-dark);
+}
+
+/* Experience Items */
+.experience-item {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 2px solid var(--minecraft-gray);
+    background-color: rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 11;
+    opacity: 1;
+    transform: none;
+}
+
+.experience-item h3 {
+    color: var(--minecraft-green);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 12;
+}
+
+.position {
+    color: var(--minecraft-light);
+    margin-bottom: 0.5rem;
+}
+
+.date {
+    color: var(--minecraft-gray);
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.achievements {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.achievements li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.achievements li::before {
+    content: '►';
+    color: var(--minecraft-green);
+    position: absolute;
+    left: -1rem;
+}
+
+/* Skills Grid */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border: 2px solid var(--minecraft-gray);
+}
+
+.skill-category h3 {
+    color: var(--minecraft-green);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(68, 189, 50, 0.1);
+    border: 1px solid var(--minecraft-green);
+}
+
+/* Education Section */
+.education-item {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 2px solid var(--minecraft-gray);
+}
+
+.certifications ul {
+    list-style: none;
+}
+
+.certifications li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(68, 189, 50, 0.1);
+    border: 1px solid var(--minecraft-green);
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--minecraft-gray);
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.contact-info a {
+    color: var(--minecraft-green);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: var(--minecraft-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .level {
+        font-size: 1.2rem;
+    }
+    
+    .minecraft-card {
+        padding: 1rem;
+    }
+    
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for Level Up Effect */
+@keyframes levelUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.level-up {
+    animation: levelUp 0.5s ease-in-out;
+}
+
+/* Experience Section */
+.experience {
+    min-height: 100vh;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+.experience .minecraft-card {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 4px solid var(--minecraft-green);
+    position: relative;
+    z-index: 10;
+    opacity: 1;
+    transform: none;
+}
+
+/* Remove parallax effect from experience section */
+.experience {
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Remove parallax styles */
+/* Add Minecraft health bar styles */
+.minecraft-health-bar {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 12px;
+    background: #231f20;
+    border: 2px solid #000000;
+    box-shadow: 
+        inset 0 0 0 2px #3f3f3f,
+        0 0 0 2px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    image-rendering: pixelated;
+}
+
+.health-progress {
+    width: 0;
+    height: 100%;
+    background-color: #ff5555;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    box-shadow: inset 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.health-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.3) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.3) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 8px 8px;
+    animation: progress-stripe 1s linear infinite;
+}
+
+@keyframes progress-stripe {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 16px 0;
+    }
+}
+
+/* Remove old progress bar styles */
+.scroll-progress {
+    display: none;
+}
+
+/* Remove parallax styles */
+.parallax-wrapper,
+.parallax-layer,
+.layer-bg,
+.layer-mid,
+.layer-front {
+    display: none;
+}
+
+/* Minecraft Ender Dragon */
+.minecraft-dragon {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background: url('assets/ender-dragon.png') no-repeat center center;
+    background-size: contain;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: drop-shadow(0 0 10px #8c00ff);
+    animation: flyAround 20s infinite ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+    opacity: 0.9;
+}
+
+.minecraft-dragon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(140, 0, 255, 0.2) 0%, transparent 70%);
+    animation: dragonGlow 2s ease-in-out infinite;
+}
+
+.minecraft-dragon.roar {
+    animation: dragonRoar 1s ease-in-out;
+}
+
+@keyframes flyAround {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(0);
+    }
+    25% {
+        transform: translate(calc(-50% + 200px), calc(-50% - 100px)) rotate(45deg) translateX(50px);
+    }
+    50% {
+        transform: translate(calc(-50% - 200px), calc(-50% + 100px)) rotate(-45deg) translateX(-50px);
+    }
+    75% {
+        transform: translate(calc(-50% + 100px), calc(-50% - 200px)) rotate(30deg) translateX(25px);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(0);
+    }
+}
+
+@keyframes dragonGlow {
+    0% { 
+        opacity: 0.5; 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2);
+        filter: brightness(1.5);
+    }
+    100% { 
+        opacity: 0.5; 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+@keyframes dragonRoar {
+    0% { 
+        transform: translate(-50%, -50%) scale(1); 
+        filter: brightness(1);
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.3); 
+        filter: brightness(1.5) drop-shadow(0 0 20px #8c00ff);
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1); 
+        filter: brightness(1);
+    }
+}
+
+/* Update section headers with tech puns */
+.hero h1::after {
+    content: '\A(Because my code is dragon everyone else behind)';
+    white-space: pre;
+    font-size: 1rem;
+    color: var(--minecraft-light);
+    text-shadow: 2px 2px 0 var(--minecraft-dark);
+}
+
+.about h2::after {
+    content: '\A404: Life not found, too busy coding';
+    white-space: pre;
+    font-size: 0.8rem;
+}
+
+.experience h2::after {
+    content: '\ATrying to catch exceptions in life, but they keep throwing me new challenges';
+    white-space: pre;
+    font-size: 0.8rem;
+}
+
+.skills h2::after {
+    content: '\AI debug therefore I am';
+    white-space: pre;
+    font-size: 0.8rem;
+}
+
+.education h2::after {
+    content: '\AGraduated with a degree in Coffee to Code Conversion';
+    white-space: pre;
+    font-size: 0.8rem;
+}
+
+/* Add tech pun tooltips to skill items */
+.skill-category li:hover::after {
+    content: attr(data-pun);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--minecraft-green);
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
